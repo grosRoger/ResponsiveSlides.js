@@ -94,6 +94,24 @@
         // Fading animation
         slideTo = function (idx) {
           settings.before(idx);
+
+          $slide = $this.children();
+          length = $slide.size();
+          
+          //if (previousLength !== length) {    //TODO comprendre pourquoi ça marche pas le if        
+            $slide.each(function (i) { this.id = slideClassPrefix + i; });
+            
+            //css3 compliant only ?
+            $slide 
+            .hide()
+            .css(hidden)
+            .eq(idx)
+            .addClass(visibleClass)
+            .css(visible)
+            .show();
+          //}
+
+
           // If CSS3 transitions are supported
           if (supportsTransitions) {
             $slide
