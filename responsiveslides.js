@@ -28,7 +28,8 @@
       "manualControls": "",     // Selector: Declare custom pager navigation
       "namespace": "rslides",   // String: change the default namespace used
       "before": $.noop,         // Function: Before callback
-      "after": $.noop           // Function: After callback
+      "after": $.noop,          // Function: After callback
+      "index": 0                // Integer: Starting index
     }, options);
 
     return this.each(function () {
@@ -47,7 +48,7 @@
         $tabs,
 
         // Helpers
-        index = 0,
+        index = settings.index,
         $slide = $this.children(),
         length = $slide.size(),
         fadeTime = parseFloat(settings.speed),
@@ -209,6 +210,10 @@
           $pager.find('li').each(function (i) {
             $(this).addClass(slideClassPrefix + (i + 1));
           });
+        }
+
+        if(settings.index) {
+          slideTo(settings.index);
         }
 
         // If we have a pager, we need to set up the selectTab function
